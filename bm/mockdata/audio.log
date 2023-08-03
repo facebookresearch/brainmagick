@@ -1,0 +1,26 @@
+Scenario - 
+Logfile written - 01/01/1970 00:00:00
+
+Subject	Trial	Event Type	Code	Time	TTime	Uncertainty	Duration	Uncertainty	ReqTime	ReqDur	Stim Type	Pair Index
+
+A2002	1	Picture	ZINNEN	-6500	3167	2	16998	4	3000	next	other	0
+A2002	2	Picture	blank	10498	0	2	20166	4	0	next	other	0
+A2002	2	Picture	FIX 3516	30664	20166	2	55164	3	20000	next	other	0
+A2002	3	Sound	14 Start File 186.wav	45904	0	2			0		other	0
+A2002	3	Nothing	1 Audio onset	46364	460	1			460		other	0
+A2002	3	Nothing	2 target	74684	28780	1			28780		other	0
+A2002	3	Nothing	15 End of file	85574	39670	1			39670		other	0
+A2002	4	Picture	blank	85828	0	1	20166	3	0	next	other	0
+A2002	528	Quit		24142047	130009
+
+
+Event Type	Code	Type	Response	RT	RT Uncertainty	Time	Uncertainty	Duration	Uncertainty	ReqTime	ReqDur
+
+Picture	ZINNEN	other				-6500	2	16998	4	3000	next
+Picture	blank	other				10498	2	20166	4	0	next
+Picture	FIX 3516	other				30664	2	55164	3	20000	next
+Sound	14 Start File 186.wav	other				45904	2			0
+Nothing	1 Audio onset	other				46364	1			460
+Nothing	2 target	other				74684	1			28780
+Nothing	15 End of file	other				85574	1			39670
+Picture	blank	other				85828	1	20166	3	0	next

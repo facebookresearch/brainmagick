@@ -1,0 +1,11 @@
+include Makefile
+include LICENSE
+include *.md
+include *.ini
+include *.toml
+include requirements.txt
+include bm/py.typed
+recursive-include bm *.yaml
+recursive-include bm *.csv
+recursive-include bm *.json
+include brainmagick.png

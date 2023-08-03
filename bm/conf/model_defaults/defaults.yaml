@@ -1,0 +1,83 @@
+# @package _global_
+
+model_name: simpleconv
+
+convrnn:
+  # Overall
+  concatenate: false
+  depth: 2
+  linear_out: false
+  complex_out: false
+  # Conv structure
+  kernel_size: 4
+  stride: 2
+  growth: 1.
+  # LSTM settings
+  lstm: 4  # number of lstm layers
+  bidirectional_lstm: false
+  flip_lstm: false
+  # Attention
+  attention: 0
+  heads: 4
+  # Dropouts and BN and activations
+  conv_dropout: 0.0
+  lstm_dropout: 0.0
+  dropout_input: 0.0
+  batch_norm: false
+  relu_leakiness: 0.0
+  # Subject specific settings
+  subject_dim: 64
+  embedding_location: [lstm]
+  embedding_scale: 1.0
+  subject_layers: false
+  subject_layers_dim: input  # input or hidden
+
+simpleconv:
+  # Overall
+  concatenate: false
+  depth: 4
+  linear_out: false
+  complex_out: false
+  # Conv layer
+  kernel_size: 5
+  dilation_growth: 2
+  dilation_period:
+  skip: false
+  post_skip: false
+  growth: 1.
+  scale:  # if not none, layer scale init value
+  rewrite: false  # 1x1 conv layer in residual branch
+  groups: 1
+  glu: 0
+  glu_context: 0
+  glu_glu: true
+  gelu: false
+  # Dual path
+  dual_path: 0
+  # Dropouts and BN and activations
+  conv_dropout: 0.0
+  dropout_input: 0.0
+  batch_norm: false
+  relu_leakiness: 0.0
+  # Subject specific settings
+  subject_dim: 64
+  subject_layers: false
+  embedding_scale: 1.0
+  subject_layers_dim: input  # input or hidden
+  subject_layers_id: false  # init to identity subject layer
+  # stft transform
+  n_fft:
+  fft_complex: true
+  # merger
+  merger: false
+  merger_pos_dim: 256
+  merger_channels: 270
+  merger_dropout: 0.2
+  merger_penalty: 0.
+  merger_per_subject: false
+  dropout: 0.  # traditional dropout for comparison
+  dropout_rescale: true
+  initial_linear: 0  # initial linear for comparison
+  initial_depth: 1
+  initial_nonlin: false
+

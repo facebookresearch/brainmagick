@@ -1,0 +1,38 @@
+# @package _global_
+
+num_workers: 5
+
+model_name: simpleconv
+simpleconv:
+  hidden:
+    meg: 320
+  batch_norm: true
+  depth: 10
+  dilation_period: 5
+  kernel_size: 3
+  skip: true
+  subject_layers: true
+  subject_dim: 0
+  complex_out: true
+  glu: 2
+  glu_context: 1
+  merger: true
+  initial_linear: 270
+  gelu: true
+  merger_pos_dim: 2048
+
+optim:
+  loss: clip
+  epochs: 200
+  max_batches: 1200
+  batch_size: 256
+
+norm:
+  clip: true
+
+task:
+  type: decode
+  # Moves the MEG signal to the 'past' by given ms value. This allows training
+  # causal models with better alignment between brain signals and the presented
+  # features.
+  offset_meg_ms: 150

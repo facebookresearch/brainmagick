@@ -1,0 +1,30 @@
+# @package _global_
+
+dset:
+  # Set with specific params to pass to each feature calculation
+  features_params:
+    MelSpectrum:
+      n_fft: 512
+      n_mels: 120
+      normalized: true
+      use_log_scale: true
+      log_scale_eps: 1e-5
+    Pitch:
+      min_f0: 100
+      max_f0: 350
+    WordHash:
+      buckets: 100000
+    XlmEmbedding:
+      contextual: false
+    WordEmbedding:
+      lang: "auto" # 'nl' for dutch, 'en' for english, see https://spacy.io/usage/models for other languages
+    WordEmbeddingSmall:
+      lang: "auto"
+    PartOfSpeech:
+      lang: "auto"
+    Wav2VecTransformer:
+      layers: [14, 15, 16, 17, 18]
+      device: cpu
+      random: false
+    Wav2VecChunk:
+      device: cpu

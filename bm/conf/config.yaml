@@ -1,0 +1,158 @@
+defaults:
+  - _self_
+  - model_defaults: defaults  # model defaults for all tasks
+  - features_defaults: features_defaults
+  - model: clip_conv          # per task / model, overrides
+  - feature_model: none            # model to extract features, e.g. DeepMel
+  - selections: selections_definitions
+  - study_paths: study_paths
+
+# Wandb config
+wandb:
+  use_wandb: false
+  project: brainmagick
+  group: brainmagick-group
+
+# Logging and printing, and does not impact training
+num_prints: 5
+device: cuda
+num_workers: 2
+verbose: 0
+show: 0   # just show the model and its size and exit
+download_only: false  # if set to true, will stop immediately after having prepared the dataset.
+
+# Slurm
+slurm:
+  mem_per_gpu: 100
+  time: 4320
+
+continue_sig:        # Dora signature of the XP to continue from.
+continue_best: true  # continue from best, not last state if continue_from is set.
+
+# Other stuff
+seed: 2036
+dummy:  # use this if you want twice the same exp, with a different name
+cache: ./cache
+features_models: ./features_models
+early_stop_patience: 10  # number of epochs to wait before early stop
+eval_every: 1
+eval_train_set: false   # also evaluates on the train set for debugging.
+
+
+# Optimization related
+optim:
+  name: adam
+  lr: 3e-4
+  beta2: 0.999
+  epochs: 40
+  batch_size: 32
+  loss: l1
+  use_weighting: false  # Use weighting for loss on categorical features
+  max_batches:          # maximum number of updates per epoch.
+  svd: 0.
+  negatives:            # number of negatives to use in clip loss. If None, batch samples are used
+  negative_pool_size:   # size of the pool we sample negatives from
+
+clip:
+  linear:      # add a linear layer with the given dimension before CLIP.
+  twin: true   # use the same model for the GT and estimate.
+  pool: false  # pool in time before computing the loss.
+  tmin:        # tmin used in CLIP.
+  tmax:        # tmax used in CLIP.
+  tmin_train:
+  tmax_train:
+  center: false
+
+test:
+  wer_negatives: 10_000    # maximum number of negatives for evaluation
+  wer_topx: 10             # topK for word error rate.
+  wer_random: false        # rank randomly samples, allows to compute random WER.
+  wer_recordings: 40       # allows to compute the WER on the first N recordings.
+  wer_study:
+
+dset:
+  selections:
+    - gwilliams2022
+  tmin: -0.5
+  tmax: 2.5
+  n_recordings: 1000
+  n_subjects:                   # If provided, will take recordings so have no more
+                                #   than  that many subjects.
+  n_subjects_test:              # Same but only for the test set. Should always be less
+                                #   than `n_subjects`.
+  shuffle_recordings_seed: -1   # -1 to deactivate shuffling.
+  skip_recordings: 0            # Skip the first N recordings.
+  test_ratio: 0.2               # Fraction of the blocks used for test.
+  valid_ratio: 0.1              # Fraction of the blocks used for valid.
+  remove_ratio: 0.              # Fraction of the bock to remove from the train set.
+  condition: 0.5                # If a float, step in seconds between samples, else condition.
+  apply_baseline: true          # Remove MEG average on first 0.3 seconds from all the sample.
+  min_block_duration: 6         # Minimum duration of a block in seconds. If blocks are smaller than this
+                                #   they will be merged together. This can be problematic for
+                                #   ensuring the separation of the train and test segments, unless
+                                #   all subjects sees the blocks exactly in the same order.
+  force_uid_assignement: false  # Forbids the merging of blocks, to use for `schoffelen2019`.
+  min_n_blocks_per_split: 1     # raise an error if there are fewer blocks per split than this
+  ignore_end_in_block: false    # A segment is considered only if fully contained inside the split blocks,
+                                # if True, this allows the end of the segment to be outside the split blocks.
+                                # This creates potential contamination, but can be useful to accessing certain
+                                # segments in the dataset that are discarded otherwise.
+  ignore_start_in_block: false  # Same but for the beginning of a segment (e.g. [tmin, 0]).
+  sample_rate: 120              # All studies will be resampled to that many Hertz.
+  highpass: 0                   # Highpass filter in Hz.
+  event_mask: true              # If true, returns a mask indicating when a stimulus occurs in epoch.
+                                # For non contrastive losses, only compute the loss where the mask is True.
+  split_wav_as_block: true      # Split wav files into smaller chunks that do not overlap block boundaries.
+                                # This is important to ensures like Wav2Vec do not leak information between
+                                # the train and test.
+  allow_empty_split: false      # Allow empty splits, this can happen if a study has too few blocks.
+  autoreject: false             # Use autoreject (https://autoreject.github.io/), super slow and loads
+                                # all the dataset in memory, so be careful!
+  test:           # Overrides for the test set, only if value is not None
+    tmin:
+    tmax:
+    condition: word
+  # features = stimulus representations
+  features:
+    - Wav2VecTransformer
+  extra_test_features: []  # extra features loaded only at test time.
+  # See conf/features_defaults/features_defauls.yaml for a list
+  # of the features parameters.
+
+override_n_subjects_model:    # Hack for loading a model trained with a different
+                              #   number of subjects.
+
+# Normalization and rescaling configuration.
+norm:
+  scaler:   # Scaling config for features (StandardScaler) and brain signals (RobustScaler)
+    per_channel: False               # For features, whether to normalize per channel.
+    n_samples_per_recording: 200     # Brain samples used per recording to compute normalization statistics.
+    n_samples_features: 8000         # Features samples used for normalization statistics.
+  max_scale: 20.        # After rescaling, any example higher than that is rejected or clipped.
+  clip: true            # Clip the signal at `max_scale` rather than rejecting the datapoint.
+  exclude_empty_features: false  # whether to remove datapoints which have no stimulus inside.
+
+# Training task configuration.
+task:
+  type: decode      # encode or decode
+  meg_init: 0.3     # Duration of the brain signal "prompt" for doing continuation.
+  lowpass: 0        # Low pass filtering to apply to the brain signal.
+  # Moves the MEG signal to the 'past' by given ms value. This allows training causal
+  # models with better alignment between brain signals and the presented features.
+  offset_meg_ms: 0  # If > 0, moves the brain signal relative to the stimulus features,
+                    # in order to compensate for the brain reaction time.
+
+  # The following  options are only useful for encoding tasks
+  lowpass_gt: True         # Apply the low pass to ground truth when training.
+  lowpass_gt_test: False   # Apply the low pass to ground truth when testing only.
+  mask_loss: false         # Apply the stimulus mask to the loss (not for contrastive losses).
+
+# Dora and Hydra config.
+dora:
+  # Change the following path to where you want experiments to be saved (checkpoints, logs etc.)
+  dir: ./outputs
+  exclude: [
+    'wandb.*', 'num_prints', 'device', 'num_workers',
+    'verbose', 'cache', 'features_models',
+  ]
+  git_save: true  # git clone before running an XP in a grid.

@@ -1,0 +1,11 @@
+# @package _global_
+
+model_name: convrnn
+convrnn:
+  hidden:
+    meg: 512
+    features: 12
+
+task:
+  type: encode
+  loss: l1

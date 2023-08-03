@@ -1,0 +1,16 @@
+# @package _global_
+
+feature_model_name: deep_mel
+feature_model_params:
+  n_hidden_channels: 320
+  n_hidden_layers: 10
+  n_out_channels: 768
+  kernel: 3
+  stride: 1
+  dilation_growth: 2
+  dilation_period: 5
+  batch_norm: True
+  activation_on_last: False
+  skip: True
+  glu_context: 1
+  glu: 2

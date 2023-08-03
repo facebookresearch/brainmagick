@@ -1,0 +1,11 @@
+# @package hydra.launcher
+_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.SlurmLauncher
+submitit_folder: ${hydra.sweep.dir}/.submitit/%j
+timeout_min: 1000
+cpus_per_task: 10
+gpus_per_node: 1  # ddp not currently supported
+mem_gb: 200
+name: ${hydra.job.name}
+partition: learnfair
+comment: null
+constraint: null

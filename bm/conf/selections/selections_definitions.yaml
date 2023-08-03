@@ -1,0 +1,20 @@
+audio_mous:
+  study: schoffelen2019
+  modality: audio
+  events_filter:
+audio_mous_wl:
+  study: schoffelen2019
+  modality: audio
+  events_filter: condition == "word_list"
+visual_mous:
+  study: schoffelen2019
+  modality: visual
+  events_filter:
+gwilliams2022:
+  study: gwilliams2022
+broderick2019:
+  study: broderick2019
+fake:
+  study: fake
+brennan2019:
+  study: brennan2019

@@ -1,0 +1,7 @@
+,start,duration,kind,context,word,filepath,sequence_id,word_index,phoneme,phoneme_id,word_sequence,sequence_uid,language,modality,offset,uid
+0,21.57,inf,block,,,,,,,,,,nl,audio,,61
+1,21.57,0.38,sound,sentence,Audio onset,PATH/EQ_Ramp_Int2_Int1LPF186.wav,186.0,0.0,,,Toen de,61.0,nl,audio,0.0,
+2,21.59,0.26,word,sentence,Toen,PATH/EQ_Ramp_Int2_Int1LPF186.wav,186.0,0.0,,,Toen de,61.0,nl,audio,,
+3,21.590001,0.049999,phoneme,sentence,Toen,PATH/EQ_Ramp_Int2_Int1LPF186.wav,186.0,0.0,t,20.0,Toen de,61.0,nl,audio,,
+4,21.640001,0.099999,phoneme,sentence,Toen,PATH/EQ_Ramp_Int2_Int1LPF186.wav,186.0,0.0,Y,31.0,Toen de,61.0,nl,audio,,
+5,21.85,0.09999999999999998,word,sentence,de,PATH/EQ_Ramp_Int2_Int1LPF186.wav,186.0,1.0,,,Toen de,61.0,nl,audio,,

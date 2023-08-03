@@ -1,0 +1,63 @@
+# @package hydra.sweeper
+# _target_: hydra_plugins.hydra_nevergrad_sweeper.core.NevergradSweeper
+#
+# README
+# This template should be copied to nevergrad.yaml in the same folder,
+# and updated as you wish
+optim:
+  optimizer: NGOpt
+  budget: 200
+  num_workers: 20
+  noisy: false
+  maximize: true
+  seed: null
+parametrization:
+  optim.lr:
+    init: 2e-4
+    lower: 1e-5
+    upper: 1e-2
+  optim.loss:
+    - mse
+    - l1
+  task.domain:
+    - Temporal
+    - FreeSpectral
+  convrnn.hidden.meg:
+    lower: 512
+    upper: 1024
+    integer: true
+  convrnn.hidden.features:
+    lower: 4
+    upper: 12
+    integer: true
+  # convrnn.glu:
+  #   - false
+  #   - true
+  convrnn.depth:
+    lower: 1
+    upper: 3
+    integer: true
+  # convrnn.kernel_size:
+  #   lower: 3
+  #   upper: 5
+  #   integer: true
+  convrnn.growth:
+    lower: 1
+    upper: 2
+  # convrnn.subject_dim:
+  #   lower: 8
+  #   upper: 24
+  #   integer: true
+  convrnn.lstm:  # number of lstm layers
+    lower: 1
+    upper: 3
+    integer: true
+  # convrnn.relu_leakiness:
+  #   - 0.0
+  #   - 0.1
+  # convrnn.conv_dropout:
+  #   - 0.0
+  #   - 0.1
+  # convrnn.lstm_dropout:
+  #   - 0.0
+  #   - 0.1

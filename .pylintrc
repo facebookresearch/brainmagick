@@ -1,0 +1,6 @@
+[MASTER]
+extension-pkg-whitelist=numpy,nose,nose.tools,numpy.testing, pathlib.PurePath, pathlib.PosixPath, pathlib.Path
+
+[MESSAGES CONTROL]
+# disabled messages
+disable=invalid-name,missing-docstring,too-few-public-methods, protected-access, import-error, fixme, no-else-return, no-member, useless-import-alias, unsubscriptable-object, unbalanced-tuple-unpacking, not-callable, too-many-locals
