@@ -10,7 +10,8 @@
 
 
 This is the code for the [Decoding speech from non-invasive brain recordings][paper].
-paper. In this work, we present a novel method to perform high performance decoding
+paper, published in Nature Machine Intelligence in 2023 (also available on [arxiv][paper_arxiv]). 
+In this work, we present a novel method to perform high performance decoding
 of perceived speech from non invasive recordings. Inspired by [CLIP][clip], we use
 a contrastive loss between a learnt representation of the brain signals (EEG or MEG)
 and a representation ([Wav2vec 2.0][wav2vec2]) of candidate audio segments.
@@ -285,8 +286,9 @@ If you use this code or results in your paper, please cite our work as:
 }
 ```
 
-[paper]: https://arxiv.org/abs/2208.12266
-[wav2vec]: https://arxiv.org/abs/2006.11477
+[paper]: https://www.nature.com/articles/s42256-023-00714-5
+[paper_arxiv]: https://arxiv.org/abs/2208.12266
+[wav2vec2]: https://arxiv.org/abs/2006.11477
 [clip]: https://arxiv.org/abs/2103.00020
 [gwilliams]: https://www.nature.com/articles/s41467-022-34326-1
 [hydra]: https://hydra.cc/docs/intro/
