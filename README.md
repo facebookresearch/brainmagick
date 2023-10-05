@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/facebookresearch/brainmagick.svg?style=svg&circle-token=25c747292cb9fc39618292cb9d2f61cb4640f874)](https://circleci.com/gh/facebookresearch/brainmagick/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/facebookresearch/brainmagick/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/facebookresearch/brainmagick/tree/main)
 
 # Decoding speech from non-invasive recordings of brain activity
 
@@ -278,7 +278,7 @@ as provided in the [LICENSE](./LICENSE) file.
 If you use this code or results in your paper, please cite our work as:
 
 ```
-@article{defossez2022decoding,
+@article{defossez2023decoding,
   title={Decoding speech perception from non-invasive brain recordings},
   author={D{\'e}fossez, Alexandre and Caucheteux, Charlotte and Rapin, J{\'e}r{\'e}my and Kabeli, Ori and King, Jean-R{\'e}mi},
   journal={Nature Machine Intelligence},
