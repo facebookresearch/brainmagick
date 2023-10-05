@@ -25,7 +25,7 @@ jobs:
             . venv/bin/activate
             # Needed by librosa
             sudo apt-get update
-            sudo apt-get install libsndfile1-dev
+            sudo apt-get install libsndfile1-dev ffmpeg
             # use latest version for following packages
             pip install --progress-bar off -U pip setuptools julius
             pip install --use-deprecated=legacy-resolver --progress-bar off -U git+https://github.com/facebookincubator/submitit@main#egg=submitit
