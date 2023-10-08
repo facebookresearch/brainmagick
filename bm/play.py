@@ -272,7 +272,7 @@ class SentenceFeatures:
     def extract_basal_states(self, recording: api.Recording, duration: float = 0.5) -> mne.Epochs:
         """Extract an mne.Epochs instance of basal state.
         Basal state are selected as chuncks of the provided duration,
-        just before the occurence of the first word of a word sequence/sentence
+        just before the occurrence of the first word of a word sequence/sentence
 
         Parameters
         ----------
