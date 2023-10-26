@@ -251,11 +251,11 @@ class FourierEmb(nn.Module):
         self.dimension = dimension
         self.margin = margin
 
-        self.width = 1 + 2 * self.margin
+        width = 1 + 2 * self.margin
         self.freqs_y = torch.arange(n_freqs)
         self.freqs_x = self.freqs_y[:, None]
-        self.p_x = 2 * math.pi * self.freqs_x / self.width
-        self.p_y = 2 * math.pi * self.freqs_y / self.width
+        self.p_x = 2 * math.pi * self.freqs_x / width
+        self.p_y = 2 * math.pi * self.freqs_y / width
 
     def forward(self, positions):
         *O, D = positions.shape
