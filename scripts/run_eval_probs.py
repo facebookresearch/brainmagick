@@ -468,7 +468,7 @@ if __name__ == "__main__":
     if conf.grid_name is not None:
         assert conf.sigs is None
         grid_dir = main.dora.dir / "grids" / conf.grid_name
-        assert grid_dir.exists(), f"{grid_dir} does not exists"
+        assert grid_dir.exists(), str(grid_dir) + " does not exists"
         sigs = [k.parent.stem for k in grid_dir.glob("*/checkpoint.th")]
         signatures += sigs
     if conf.sigs is not None:
