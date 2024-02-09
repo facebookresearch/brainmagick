@@ -23,7 +23,7 @@ download_only: false  # if set to true, will stop immediately after having prepa
 
 # Slurm
 slurm:
-  mem_per_gpu: 100
+  mem_per_gpu: 50
   time: 4320
 
 continue_sig:        # Dora signature of the XP to continue from.
@@ -75,7 +75,7 @@ dset:
     - brennan2019
   tmin: -0.5
   tmax: 2.5
-  n_recordings: 4
+  n_recordings: 2
   n_subjects:                   # If provided, will take recordings so have no more
                                 #   than  that many subjects.
   n_subjects_test:              # Same but only for the test set. Should always be less
