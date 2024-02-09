@@ -12,20 +12,26 @@ from ...train import main  # noqa
 
 @ClipExplorer
 def explorer(launcher):
-    launcher.slurm_(
-        gpus=2, mem_per_gpu=200,
-        partition="learnlab",
-        constraint="volta32gb",
-    )
+    # launcher.slurm_(
+    #     gpus=2, mem_per_gpu=200,
+    #     partition="learnlab",
+    #     constraint="volta32gb",
+    # )
+    # I removed slurm stuff
     launcher.bind_({
         'model': 'clip_conv',
     })
 
-    seeds = [2036, 2037, 2038]
+    #seeds = [2036, 2037, 2038] #I changed this
+    seeds = [2038]
+    # audio_sets = [
+    #     'audio_mous',
+    #     'gwilliams2022',
+    #     'broderick2019',
+    #     'brennan2019',
+    # ]
+    #I changed the above table
     audio_sets = [
-        'audio_mous',
-        'gwilliams2022',
-        'broderick2019',
         'brennan2019',
     ]
 
@@ -52,7 +58,7 @@ def explorer(launcher):
             ssub = sub.bind({'optim.loss': 'mse', 'dset.features': ['MelSpectrum']})
             ssub()
             # Uncomment once the first XP has done training.
-            # xp = main.get_xp(ssub._argv)
-            # sub({'dset.features': ['MelSpectrum'], 'optim.max_batches': 1, 'optim.lr': 0,
-            #      'optim.epochs': 1},
-            #     continue_sig=xp.sig, continue_best=True)
+            xp = main.get_xp(ssub._argv)
+            sub({'dset.features': ['MelSpectrum'], 'optim.max_batches': 1, 'optim.lr': 0,
+                 'optim.epochs': 1},
+                continue_sig=xp.sig, continue_best=True)
