@@ -17,7 +17,7 @@ wandb:
 num_prints: 5
 device: cuda
 num_workers: 2
-verbose: 0
+verbose: 1
 show: 0   # just show the model and its size and exit
 download_only: false  # if set to true, will stop immediately after having prepared the dataset.
 
@@ -30,7 +30,7 @@ continue_sig:        # Dora signature of the XP to continue from.
 continue_best: true  # continue from best, not last state if continue_from is set.
 
 # Other stuff
-seed: 2036
+seed: 2038
 dummy:  # use this if you want twice the same exp, with a different name
 cache: ./cache
 features_models: ./features_models
@@ -45,7 +45,7 @@ optim:
   lr: 3e-4
   beta2: 0.999
   epochs: 40
-  batch_size: 32
+  batch_size: 16
   loss: l1
   use_weighting: false  # Use weighting for loss on categorical features
   max_batches:          # maximum number of updates per epoch.
@@ -72,10 +72,10 @@ test:
 
 dset:
   selections:
-    - gwilliams2022
+    - brennan2019
   tmin: -0.5
   tmax: 2.5
-  n_recordings: 1000
+  n_recordings: 4
   n_subjects:                   # If provided, will take recordings so have no more
                                 #   than  that many subjects.
   n_subjects_test:              # Same but only for the test set. Should always be less
