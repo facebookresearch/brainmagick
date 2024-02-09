@@ -12,28 +12,26 @@ from ...train import main  # noqa
 
 @ClipExplorer
 def explorer(launcher):
-    # launcher.slurm_(
-    #     gpus=2, mem_per_gpu=200,
-    #     partition="learnlab",
-    #     constraint="volta32gb",
-    # )
+    launcher.slurm_(
+        gpus=1, mem_per_gpu=100,
+    )
     # I removed slurm stuff
     launcher.bind_({
         'model': 'clip_conv',
     })
 
-    #seeds = [2036, 2037, 2038] #I changed this
-    seeds = [2038]
-    # audio_sets = [
-    #     'audio_mous',
-    #     'gwilliams2022',
-    #     'broderick2019',
-    #     'brennan2019',
-    # ]
-    #I changed the above table
+    seeds = [2036, 2037, 2038] #I changed this
+    # seeds = [2038]
     audio_sets = [
+        'audio_mous',
+        'gwilliams2022',
+        'broderick2019',
         'brennan2019',
     ]
+    #I changed the above table
+    # audio_sets = [
+    #     'brennan2019',
+    # ]
 
     # Results from Table 2.
     with launcher.job_array():
