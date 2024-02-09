@@ -341,6 +341,10 @@ class Solver(flashy.BaseSolver):
         last_batch = None
         averager = flashy.averager()
         for idx, batch in enumerate(logprog):
+            #for debugging purposes - prateek
+            #torch.cuda.empty_cache()
+            #logger.info(torch.cuda.memory_summary(device=None, abbreviated=False))
+
             estimate, output, features_mask, _ = self._process_batch(batch, training)
             # Shitty hack for distributed to work properly
             if estimate is None:  # batch contained only invalid elements
